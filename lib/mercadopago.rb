@@ -212,10 +212,11 @@ class MercadoPago
 		end
 
 		if not params.empty?
-			uri << (if uri.include? "?" then "&" else "?" end) << build_query(params)
+      new_uri = uri.dup
+			new_uri << (if uri.include? "?" then "&" else "?" end) << build_query(params)
 		end
 
-		@rest_client.get(uri)
+		@rest_client.get(new_uri)
 	end
 
 	# Generic resource post
